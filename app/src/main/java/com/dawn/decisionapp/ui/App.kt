@@ -8,8 +8,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
+import com.dawn.decisionapp.ui.screen.color.colorScreen
 import com.dawn.decisionapp.ui.screen.home.homeScreen
 import com.dawn.decisionapp.ui.screen.home.homeScreenRoute
+import com.dawn.decisionapp.ui.screen.number.numberScreen
 
 @Composable
 fun App(
@@ -29,6 +31,8 @@ fun App(
         ) {
             NavHost(navController = appViewModel.navController, startDestination = homeScreenRoute ){
                 homeScreen()
+                numberScreen()
+                colorScreen()
             }
         }
     }

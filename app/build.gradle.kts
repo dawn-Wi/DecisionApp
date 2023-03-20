@@ -81,6 +81,11 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
 
+    //Retrofit
+    implementation ("com.squareup.retrofit2:retrofit:2.8.1")
+    implementation ("com.squareup.retrofit2:converter-gson:2.8.1")
+    implementation ("com.squareup.okhttp3:logging-interceptor:4.8.1")
+
     //Navigation
     implementation("androidx.navigation:navigation-compose")
 

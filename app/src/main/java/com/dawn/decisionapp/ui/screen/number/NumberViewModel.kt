@@ -4,6 +4,7 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavHostController
+import com.dawn.decisionapp.service.SnackbarService
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -11,7 +12,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class NumberViewModel @Inject constructor(
-    private val navController: NavHostController
+    private val navController: NavHostController,
+    private val snackbarService: SnackbarService,
 ): ViewModel(){
 
     private val _randomNumber = MutableStateFlow(0)
@@ -53,7 +55,11 @@ class NumberViewModel @Inject constructor(
             }
 
             NumberUiEvent.InputNumberButtonPressed -> {
-                getInputRandomNumber(_startNumber.value,_endNumber.value)
+                if (numberValid(_startNumber.value, _endNumber.value)){
+                    getInputRandomNumber(_startNumber.value,_endNumber.value)
+                }else{
+                    snackbarService.showSnackbar("숫자 범위 입력이 잘못되었습니다.")
+                }
             }
         }
     }
@@ -79,6 +85,10 @@ class NumberViewModel @Inject constructor(
         val range = (startNumber.toInt()..endNumber.toInt())
         _randomNumber.value = range.random()
         _randomNumberLabel.value = "0 ~ 99"
+    }
+
+    private fun numberValid(startNumber: String, endNumber: String): Boolean {
+        return startNumber.toInt() <= endNumber.toInt()
     }
 
     init {

@@ -30,6 +30,8 @@ class HomeViewModel @Inject constructor(
             HomeUiEvent.FoodButtonPressed -> {
                 navController.navigateToFoodScreen()
             }
+
+            HomeUiEvent.SongButtonPressed -> TODO()
         }
     }
 }
@@ -39,4 +41,5 @@ sealed class HomeUiEvent {
     object NumberButtonPressed : HomeUiEvent()
     object ColorButtonPressed : HomeUiEvent()
     object FoodButtonPressed : HomeUiEvent()
+    object SongButtonPressed : HomeUiEvent()
 }

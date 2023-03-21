@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.twotone.Audiotrack
 import androidx.compose.material.icons.twotone.Contrast
 import androidx.compose.material.icons.twotone.Fastfood
 import androidx.compose.material.icons.twotone.Pin
@@ -78,7 +79,7 @@ fun HomeScreen(
                         ),
                     shape = RoundedCornerShape(20.dp),
                     colors = ButtonDefaults.buttonColors(Color.White),
-                    onClick = {viewModel.onEvent(HomeUiEvent.NumberButtonPressed)},
+                    onClick = { viewModel.onEvent(HomeUiEvent.NumberButtonPressed) },
                     icon = {
                         AnimatedVisibility(visible = true) {
                             Image(
@@ -109,7 +110,7 @@ fun HomeScreen(
                         ),
                     shape = RoundedCornerShape(20.dp),
                     colors = ButtonDefaults.buttonColors(Color.White),
-                    onClick = {viewModel.onEvent(HomeUiEvent.ColorButtonPressed)},
+                    onClick = { viewModel.onEvent(HomeUiEvent.ColorButtonPressed) },
                     icon = {
                         AnimatedVisibility(visible = true) {
                             Image(
@@ -140,7 +141,7 @@ fun HomeScreen(
                         ),
                     shape = RoundedCornerShape(20.dp),
                     colors = ButtonDefaults.buttonColors(Color.White),
-                    onClick = {viewModel.onEvent(HomeUiEvent.FoodButtonPressed)},
+                    onClick = { viewModel.onEvent(HomeUiEvent.FoodButtonPressed) },
                     icon = {
                         AnimatedVisibility(visible = true) {
                             Image(
@@ -161,7 +162,103 @@ fun HomeScreen(
                 )
             }
             Spacer(modifier = Modifier.height(10.dp))
-
+            Row(
+                modifier = Modifier,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                PressIconButton(
+                    modifier = Modifier
+                        .weight(1f)
+                        .height(100.dp)
+                        .border(
+                            width = 3.dp,
+                            color = Color.Blue,
+                            shape = RoundedCornerShape(20.dp)
+                        ),
+                    shape = RoundedCornerShape(20.dp),
+                    colors = ButtonDefaults.buttonColors(Color.White),
+                    onClick = { viewModel.onEvent(HomeUiEvent.NumberButtonPressed) },
+                    icon = {
+                        AnimatedVisibility(visible = true) {
+                            Image(
+                                modifier = Modifier.fillMaxSize(),
+                                imageVector = Icons.TwoTone.Audiotrack,
+                                contentDescription = "SONG",
+                            )
+                        }
+                    },
+                    text = {
+                        Text(
+                            fontSize = 25.sp,
+                            text = "노래",
+                            color = Color.Black,
+                            fontWeight = FontWeight.ExtraBold
+                        )
+                    }
+                )
+                Spacer(modifier = Modifier.width(10.dp))
+                PressIconButton(
+                    modifier = Modifier
+                        .weight(1f)
+                        .height(100.dp)
+                        .border(
+                            width = 3.dp,
+                            color = Color.Yellow,
+                            shape = RoundedCornerShape(20.dp)
+                        ),
+                    shape = RoundedCornerShape(20.dp),
+                    colors = ButtonDefaults.buttonColors(Color.White),
+                    onClick = { viewModel.onEvent(HomeUiEvent.ColorButtonPressed) },
+                    icon = {
+                        AnimatedVisibility(visible = true) {
+                            Image(
+                                modifier = Modifier.fillMaxSize(),
+                                imageVector = Icons.TwoTone.Contrast,
+                                contentDescription = "COLOR",
+                            )
+                        }
+                    },
+                    text = {
+                        Text(
+                            fontSize = 25.sp,
+                            text = "색깔",
+                            color = Color.Black,
+                            fontWeight = FontWeight.ExtraBold
+                        )
+                    }
+                )
+                Spacer(modifier = Modifier.width(10.dp))
+                PressIconButton(
+                    modifier = Modifier
+                        .weight(1f)
+                        .height(100.dp)
+                        .border(
+                            width = 3.dp,
+                            color = Color.Green,
+                            shape = RoundedCornerShape(20.dp)
+                        ),
+                    shape = RoundedCornerShape(20.dp),
+                    colors = ButtonDefaults.buttonColors(Color.White),
+                    onClick = { viewModel.onEvent(HomeUiEvent.FoodButtonPressed) },
+                    icon = {
+                        AnimatedVisibility(visible = true) {
+                            Image(
+                                modifier = Modifier.fillMaxSize(),
+                                imageVector = Icons.TwoTone.Fastfood,
+                                contentDescription = "FOOD",
+                            )
+                        }
+                    },
+                    text = {
+                        Text(
+                            fontSize = 25.sp,
+                            text = "음식",
+                            color = Color.Black,
+                            fontWeight = FontWeight.ExtraBold
+                        )
+                    }
+                )
+            }
         }
     }
 }
@@ -188,7 +285,7 @@ fun PressIconButton(
         Column(
             modifier = Modifier,
             horizontalAlignment = Alignment.CenterHorizontally
-        ){
+        ) {
             AnimatedVisibility(
                 visible = isPressed,
                 enter = fadeIn(),

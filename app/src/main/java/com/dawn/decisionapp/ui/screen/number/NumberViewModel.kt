@@ -3,18 +3,22 @@ package com.dawn.decisionapp.ui.screen.number
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavHostController
+import com.dawn.decisionapp.remote.DecisionApi
 import com.dawn.decisionapp.service.SnackbarService
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class NumberViewModel @Inject constructor(
     private val navController: NavHostController,
+    private val decisionApi: DecisionApi,
     private val snackbarService: SnackbarService,
-): ViewModel(){
+) : ViewModel() {
 
     private val _randomNumber = MutableStateFlow(0)
     val randomNumber = _randomNumber.asStateFlow()
@@ -30,14 +34,16 @@ class NumberViewModel @Inject constructor(
     private val _endNumber = MutableStateFlow("99")
     val endNumber = _endNumber.asStateFlow()
 
-    fun onEvent(event: NumberUiEvent){
-        when(event){
+    fun onEvent(event: NumberUiEvent) {
+        when (event) {
             NumberUiEvent.RetryButtonPressed -> {
                 getRandomNumber()
             }
+
             NumberUiEvent.SingleNumberButtonPressed -> {
                 getSingleRandomNumber()
             }
+
             NumberUiEvent.TwoNumberButtonPressed -> {
                 getTwoRandomNumber()
             }
@@ -46,7 +52,7 @@ class NumberViewModel @Inject constructor(
                 _startNumber.value = event.startNumber
             }
 
-            is NumberUiEvent.OnEndNumberChanged ->{
+            is NumberUiEvent.OnEndNumberChanged -> {
                 _endNumber.value = event.endNumber
             }
 
@@ -55,9 +61,9 @@ class NumberViewModel @Inject constructor(
             }
 
             NumberUiEvent.InputNumberButtonPressed -> {
-                if (numberValid(_startNumber.value, _endNumber.value)){
-                    getInputRandomNumber(_startNumber.value,_endNumber.value)
-                }else{
+                if (numberValid(_startNumber.value, _endNumber.value)) {
+                    getInputRandomNumber(_startNumber.value, _endNumber.value)
+                } else {
                     snackbarService.showSnackbar("숫자 범위 입력이 잘못되었습니다.")
                 }
             }
@@ -65,26 +71,43 @@ class NumberViewModel @Inject constructor(
     }
 
     private fun getRandomNumber() {
-        val range = (0..999)
-        _randomNumber.value = range.random()
-        _randomNumberLabel.value = "0 ~ 999"
+        viewModelScope.launch {
+            val response = decisionApi.getRandomNumber()
+            if (response.isSuccessful) {
+                _randomNumber.value = response.body()!!
+                _randomNumberLabel.value = "0 ~ 999"
+            }
+        }
     }
 
-    private fun getSingleRandomNumber(){
-        val range = (0..9)
-        _randomNumber.value = range.random()
-        _randomNumberLabel.value = "0 ~ 9"
+    private fun getSingleRandomNumber() {
+        viewModelScope.launch {
+            val response = decisionApi.getSingleRandomNumber()
+            if (response.isSuccessful) {
+                _randomNumber.value = response.body()!!
+                _randomNumberLabel.value = "0 ~ 9"
+            }
+        }
     }
 
-    private fun getTwoRandomNumber(){
-        val range = (0..99)
-        _randomNumber.value = range.random()
-        _randomNumberLabel.value = "0 ~ 99"
+    private fun getTwoRandomNumber() {
+        viewModelScope.launch {
+            val response = decisionApi.getTwoRandomNumber()
+            if(response.isSuccessful){
+                _randomNumber.value = response.body()!!
+                _randomNumberLabel.value= "0 ~ 99"
+            }
+        }
     }
+
     private fun getInputRandomNumber(startNumber: String, endNumber: String){
-        val range = (startNumber.toInt()..endNumber.toInt())
-        _randomNumber.value = range.random()
-        _randomNumberLabel.value = "0 ~ 99"
+        viewModelScope.launch {
+            val response = decisionApi.getInputRandomNumber(startNumber, endNumber)
+            if(response.isSuccessful){
+                _randomNumber.value = response.body()!!
+                _randomNumberLabel.value = "$startNumber ~ $endNumber"
+            }
+        }
     }
 
     private fun numberValid(startNumber: String, endNumber: String): Boolean {
@@ -96,12 +119,12 @@ class NumberViewModel @Inject constructor(
     }
 }
 
-sealed class NumberUiEvent{
+sealed class NumberUiEvent {
     data class OnStartNumberChanged(val startNumber: String) : NumberUiEvent()
-    data class OnEndNumberChanged(val endNumber: String): NumberUiEvent()
+    data class OnEndNumberChanged(val endNumber: String) : NumberUiEvent()
     object RetryButtonPressed : NumberUiEvent()
     object SingleNumberButtonPressed : NumberUiEvent()
     object TwoNumberButtonPressed : NumberUiEvent()
     object VisibleSessionPressed : NumberUiEvent()
-    object InputNumberButtonPressed: NumberUiEvent()
+    object InputNumberButtonPressed : NumberUiEvent()
 }

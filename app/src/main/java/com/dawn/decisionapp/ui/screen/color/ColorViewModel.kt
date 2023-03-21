@@ -2,16 +2,20 @@ package com.dawn.decisionapp.ui.screen.color
 
 import android.graphics.Color
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavHostController
+import com.dawn.decisionapp.remote.DecisionApi
 import com.dawn.decisionapp.service.SnackbarService
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class ColorViewModel @Inject constructor(
     private val navController: NavHostController,
+    private val decisionApi: DecisionApi,
     private val snackbarService: SnackbarService,
 ): ViewModel(){
 
@@ -37,11 +41,15 @@ class ColorViewModel @Inject constructor(
     }
 
     private fun getRandomColor(){
-        val range = (0..255)
-        _randomColorR.value = range.random()
-        _randomColorG.value = range.random()
-        _randomColorB.value = range.random()
-        _colorInt.value = Color.argb(255, randomColorR.value, randomColorG.value, randomColorB.value)
+        viewModelScope.launch {
+            val response = decisionApi.getRandomColor()
+            if(response.isSuccessful){
+                _randomColorR.value = response.body()!![0]
+                _randomColorG.value = response.body()!![1]
+                _randomColorB.value = response.body()!![2]
+                _colorInt.value = Color.argb(255,randomColorR.value,randomColorG.value, randomColorB.value)
+            }
+        }
     }
 
     init {

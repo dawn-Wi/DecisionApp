@@ -6,6 +6,7 @@ import com.dawn.decisionapp.ui.AppUiEvent
 import com.dawn.decisionapp.ui.screen.color.navigateToColorScreen
 import com.dawn.decisionapp.ui.screen.food.navigateToFoodScreen
 import com.dawn.decisionapp.ui.screen.number.navigateToNumberScreen
+import com.dawn.decisionapp.ui.screen.song.navigateToSongScreen
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -31,7 +32,9 @@ class HomeViewModel @Inject constructor(
                 navController.navigateToFoodScreen()
             }
 
-            HomeUiEvent.SongButtonPressed -> TODO()
+            HomeUiEvent.SongButtonPressed ->{
+                navController.navigateToSongScreen()
+            }
         }
     }
 }

@@ -13,6 +13,7 @@ import com.dawn.decisionapp.ui.screen.food.foodScreen
 import com.dawn.decisionapp.ui.screen.home.homeScreen
 import com.dawn.decisionapp.ui.screen.home.homeScreenRoute
 import com.dawn.decisionapp.ui.screen.number.numberScreen
+import com.dawn.decisionapp.ui.screen.song.songScreen
 
 @Composable
 fun App(
@@ -35,6 +36,7 @@ fun App(
                 numberScreen()
                 colorScreen()
                 foodScreen()
+                songScreen()
             }
         }
     }

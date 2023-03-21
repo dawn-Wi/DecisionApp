@@ -177,7 +177,7 @@ fun HomeScreen(
                         ),
                     shape = RoundedCornerShape(20.dp),
                     colors = ButtonDefaults.buttonColors(Color.White),
-                    onClick = { viewModel.onEvent(HomeUiEvent.NumberButtonPressed) },
+                    onClick = { viewModel.onEvent(HomeUiEvent.SongButtonPressed) },
                     icon = {
                         AnimatedVisibility(visible = true) {
                             Image(

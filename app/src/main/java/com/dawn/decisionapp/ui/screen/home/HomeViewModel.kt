@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.navigation.NavHostController
 import com.dawn.decisionapp.ui.AppUiEvent
 import com.dawn.decisionapp.ui.screen.color.navigateToColorScreen
+import com.dawn.decisionapp.ui.screen.drama.navigateToDramaScreen
 import com.dawn.decisionapp.ui.screen.food.navigateToFoodScreen
 import com.dawn.decisionapp.ui.screen.number.navigateToNumberScreen
 import com.dawn.decisionapp.ui.screen.song.navigateToSongScreen
@@ -35,6 +36,10 @@ class HomeViewModel @Inject constructor(
             HomeUiEvent.SongButtonPressed ->{
                 navController.navigateToSongScreen()
             }
+
+            HomeUiEvent.DramaButtonPressed -> {
+                navController.navigateToDramaScreen()
+            }
         }
     }
 }
@@ -45,4 +50,5 @@ sealed class HomeUiEvent {
     object ColorButtonPressed : HomeUiEvent()
     object FoodButtonPressed : HomeUiEvent()
     object SongButtonPressed : HomeUiEvent()
+    object DramaButtonPressed : HomeUiEvent()
 }

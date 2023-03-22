@@ -1,5 +1,6 @@
 package com.dawn.decisionapp.remote
 
+import com.dawn.decisionapp.model.Drama
 import com.dawn.decisionapp.model.Food
 import com.dawn.decisionapp.model.Song
 import retrofit2.Response
@@ -40,4 +41,10 @@ interface DecisionApi {
 
     @GET("song/category/other")
     suspend fun getRandomSongByCategoryIsOther() : Response<Song>
+
+    @GET("drama")
+    suspend fun getRandomDrama():Response<Drama>
+
+    @GET("drama/category")
+    suspend fun getRandomDramaByCategory(@Query("category")category: String): Response<Drama>
 }

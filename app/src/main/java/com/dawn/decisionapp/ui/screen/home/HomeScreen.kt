@@ -19,6 +19,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.twotone.Audiotrack
 import androidx.compose.material.icons.twotone.Contrast
 import androidx.compose.material.icons.twotone.Fastfood
+import androidx.compose.material.icons.twotone.LiveTv
 import androidx.compose.material.icons.twotone.Pin
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
@@ -172,7 +173,7 @@ fun HomeScreen(
                         .height(100.dp)
                         .border(
                             width = 3.dp,
-                            color = Color.Blue,
+                            color = Color.Cyan,
                             shape = RoundedCornerShape(20.dp)
                         ),
                     shape = RoundedCornerShape(20.dp),
@@ -203,25 +204,25 @@ fun HomeScreen(
                         .height(100.dp)
                         .border(
                             width = 3.dp,
-                            color = Color.Yellow,
+                            color = Color.Blue,
                             shape = RoundedCornerShape(20.dp)
                         ),
                     shape = RoundedCornerShape(20.dp),
                     colors = ButtonDefaults.buttonColors(Color.White),
-                    onClick = { viewModel.onEvent(HomeUiEvent.ColorButtonPressed) },
+                    onClick = { viewModel.onEvent(HomeUiEvent.DramaButtonPressed) },
                     icon = {
                         AnimatedVisibility(visible = true) {
                             Image(
                                 modifier = Modifier.fillMaxSize(),
-                                imageVector = Icons.TwoTone.Contrast,
-                                contentDescription = "COLOR",
+                                imageVector = Icons.TwoTone.LiveTv,
+                                contentDescription = "DRAMA",
                             )
                         }
                     },
                     text = {
                         Text(
-                            fontSize = 25.sp,
-                            text = "색깔",
+                            fontSize = 23.sp,
+                            text = "드라마",
                             color = Color.Black,
                             fontWeight = FontWeight.ExtraBold
                         )

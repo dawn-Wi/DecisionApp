@@ -5,6 +5,7 @@ enum class DetailsScreenRoute{
     color_screen_route,
     food_screen_route,
     song_screen_route,
+    drama_screen_route,
 }
 
 fun DetailsScreenRoute.toKorean():String{
@@ -13,5 +14,6 @@ fun DetailsScreenRoute.toKorean():String{
         DetailsScreenRoute.color_screen_route -> "색깔"
         DetailsScreenRoute.food_screen_route -> "음식"
         DetailsScreenRoute.song_screen_route -> "노래"
+        DetailsScreenRoute.drama_screen_route -> "드라마"
     }
 }

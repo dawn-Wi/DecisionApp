@@ -9,6 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import com.dawn.decisionapp.ui.screen.color.colorScreen
+import com.dawn.decisionapp.ui.screen.drama.dramaScreen
 import com.dawn.decisionapp.ui.screen.food.foodScreen
 import com.dawn.decisionapp.ui.screen.home.homeScreen
 import com.dawn.decisionapp.ui.screen.home.homeScreenRoute
@@ -37,6 +38,7 @@ fun App(
                 colorScreen()
                 foodScreen()
                 songScreen()
+                dramaScreen()
             }
         }
     }

@@ -85,7 +85,7 @@ fun SongScreen(
                             .align(Alignment.CenterHorizontally)
                     ) {
                         Text(text = "발매일 : ")
-                        Text(text = "$randomSongReleaseDate")
+                        Text(text = "$randomSongReleaseDate.")
                     }
                     Spacer(modifier = Modifier.height(10.dp))
                     Row(

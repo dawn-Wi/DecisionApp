@@ -7,5 +7,6 @@ data class Song(
     val title: String,
     val singer: String,
     val releaseDate: Date,
-    val category: String
+    val category: String,
+    val image_url:String
 )

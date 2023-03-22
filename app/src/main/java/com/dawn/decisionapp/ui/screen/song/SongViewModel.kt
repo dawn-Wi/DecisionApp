@@ -36,6 +36,9 @@ class SongViewModel @Inject constructor(
     private val _randomSongCategory = MutableStateFlow("")
     val randomSongCategory = _randomSongCategory.asStateFlow()
 
+    private val _randomSongImageUrl = MutableStateFlow("")
+    val randomSongImageUrl = _randomSongImageUrl.asStateFlow()
+
     private val dateFormat = "yyyy-MM-dd"
     @SuppressLint("SimpleDateFormat")
     private val simpleDateFormat = SimpleDateFormat(dateFormat)
@@ -65,6 +68,7 @@ class SongViewModel @Inject constructor(
             val simpleDate: String = simpleDateFormat.format(randomSong.releaseDate)
             _randomSongReleaseDate.value = simpleDate
             _randomSongCategory.value = randomSong.category
+            _randomSongImageUrl.value = randomSong.image_url
         }
     }
 
@@ -76,6 +80,7 @@ class SongViewModel @Inject constructor(
             val simpleDate: String = simpleDateFormat.format(randomSong.releaseDate)
             _randomSongReleaseDate.value = simpleDate
             _randomSongCategory.value = randomSong.category
+            _randomSongImageUrl.value = randomSong.image_url
         }
     }
 
@@ -87,6 +92,7 @@ class SongViewModel @Inject constructor(
             val simpleDate: String = simpleDateFormat.format(randomSong.releaseDate)
             _randomSongReleaseDate.value = simpleDate
             _randomSongCategory.value = randomSong.category
+            _randomSongImageUrl.value = randomSong.image_url
         }
     }
 

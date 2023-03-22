@@ -26,7 +26,6 @@ class DramaViewModel @Inject constructor(
     private val _randomDramaName = MutableStateFlow("")
     val randomDramaName = _randomDramaName.asStateFlow()
 
-//    private val _randomDramaImageUrl = MutableStateFlow(createBitmap(10,10,Bitmap.Config.ARGB_8888))
     private val _randomDramaImageUrl = MutableStateFlow("")
     val randomDramaImageUrl = _randomDramaImageUrl.asStateFlow()
 
@@ -47,25 +46,8 @@ class DramaViewModel @Inject constructor(
             _randomDramaName.value = randomDrama.name
             _randomDramaCategory.value = randomDrama.category
             _randomDramaImageUrl.value = randomDrama.image_url
-//            _randomDramaImageUrl.value = getImageFormUrl(randomDrama.image_url)
         }
     }
-//
-//    private fun getImageFormUrl(imageUrl: String): Bitmap {
-//        var bitmap: Bitmap? = null
-//
-//        val url = URL(imageUrl)
-//        val connection = url.openConnection()
-//        connection.connect()
-//
-//        val size = connection.contentLength
-//        val bis = BufferedInputStream(connection.getInputStream(), size)
-//        bitmap = BitmapFactory.decodeStream(bis)
-//
-//        bis.close()
-//
-//        return bitmap
-//    }
 
     init {
         getRandomDrama()

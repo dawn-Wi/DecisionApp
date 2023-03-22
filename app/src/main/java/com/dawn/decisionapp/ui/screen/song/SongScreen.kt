@@ -23,6 +23,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
+import coil.compose.AsyncImage
 import com.baec23.ludwig.component.button.StatefulButton
 import com.baec23.ludwig.component.section.DisplaySection
 import com.dawn.decisionapp.ui.screen.DetailsScreen
@@ -49,6 +50,7 @@ fun SongScreen(
     val randomSongSinger by viewModel.randomSongSinger.collectAsState()
     val randomSongReleaseDate by viewModel.randomSongReleaseDate.collectAsState()
     val randomSongCategory by viewModel.randomSongCategory.collectAsState()
+    val randomSongImageUrl by viewModel.randomSongImageUrl.collectAsState()
 
     DetailsScreen {
         Surface(
@@ -60,10 +62,17 @@ fun SongScreen(
                 Column(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .fillMaxHeight(0.4f),
+                        .fillMaxHeight(0.8f),
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
+                    AsyncImage(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .fillMaxHeight(0.7f),
+                        model = randomSongImageUrl,
+                        contentDescription = "Image"
+                    )
                     Row (
                         modifier = Modifier
                         .align(Alignment.CenterHorizontally)

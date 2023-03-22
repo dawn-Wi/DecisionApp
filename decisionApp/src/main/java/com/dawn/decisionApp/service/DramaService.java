@@ -2,8 +2,6 @@ package com.dawn.decisionApp.service;
 
 import com.dawn.decisionApp.domain.Drama;
 import com.dawn.decisionApp.repository.DramaRepository;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -11,12 +9,10 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -42,14 +38,14 @@ public class DramaService {
         return selectDrama;
     }
 
-    private String getUrl(String dramaName) {
+    private String getUrl(String researchItem) {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.set("Authorization", "KakaoAK " + key);
         HttpEntity<String> httpEntity = new HttpEntity<>(httpHeaders);
         URI targetUrl = UriComponentsBuilder
                 .fromHttpUrl(url)
-                .queryParam("query", dramaName)
+                .queryParam("query", "드라마 : "+researchItem)
                 .build()
                 .encode(StandardCharsets.UTF_8)
                 .toUri();

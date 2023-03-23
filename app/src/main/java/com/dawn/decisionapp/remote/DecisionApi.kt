@@ -1,5 +1,6 @@
 package com.dawn.decisionapp.remote
 
+import com.dawn.decisionapp.model.Book
 import com.dawn.decisionapp.model.Drama
 import com.dawn.decisionapp.model.Drink
 import com.dawn.decisionapp.model.Food
@@ -55,4 +56,7 @@ interface DecisionApi {
 
     @GET("drink/category")
     suspend fun getRandomDrinkByCategory(@Query("category")category: String): Response<Drink>
+
+    @GET("book")
+    suspend fun getRandomBook(): Response<Book>
 }

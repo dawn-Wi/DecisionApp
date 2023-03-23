@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.twotone.Audiotrack
+import androidx.compose.material.icons.twotone.Book
 import androidx.compose.material.icons.twotone.Contrast
 import androidx.compose.material.icons.twotone.Fastfood
 import androidx.compose.material.icons.twotone.LiveTv
@@ -66,7 +67,10 @@ fun HomeScreen(
             .fillMaxSize()
             .padding(16.dp)
     ) {
-        DisplaySection(headerText = "카테고리 선택") {
+        DisplaySection(
+            headerText = "카테고리 선택"
+        ) {
+            Spacer(modifier = Modifier.height(10.dp))
             Row(
                 modifier = Modifier,
                 verticalAlignment = Alignment.CenterVertically
@@ -304,25 +308,25 @@ fun HomeScreen(
                         .height(100.dp)
                         .border(
                             width = 3.dp,
-                            color = Color.Blue,
+                            color = Color.DarkGray,
                             shape = RoundedCornerShape(20.dp)
                         ),
                     shape = RoundedCornerShape(20.dp),
                     colors = ButtonDefaults.buttonColors(Color.White),
-                    onClick = { viewModel.onEvent(HomeUiEvent.DramaButtonPressed) },
+                    onClick = { viewModel.onEvent(HomeUiEvent.BookButtonPressed) },
                     icon = {
                         AnimatedVisibility(visible = true) {
                             Image(
                                 modifier = Modifier.fillMaxSize(),
-                                imageVector = Icons.TwoTone.LiveTv,
-                                contentDescription = "DRAMA",
+                                imageVector = Icons.TwoTone.Book,
+                                contentDescription = "BOOK",
                             )
                         }
                     },
                     text = {
                         Text(
                             fontSize = 23.sp,
-                            text = "드라마",
+                            text = "도서",
                             color = Color.Black,
                             fontWeight = FontWeight.ExtraBold
                         )

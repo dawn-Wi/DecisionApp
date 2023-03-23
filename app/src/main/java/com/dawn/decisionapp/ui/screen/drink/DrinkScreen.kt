@@ -27,7 +27,6 @@ import coil.compose.AsyncImage
 import com.baec23.ludwig.component.button.StatefulButton
 import com.baec23.ludwig.component.section.DisplaySection
 import com.dawn.decisionapp.ui.screen.DetailsScreen
-import com.dawn.decisionapp.ui.screen.food.FoodUiEvent
 import com.dawn.decisionapp.util.DetailsScreenRoute
 import com.dawn.decisionapp.util.toKorean
 

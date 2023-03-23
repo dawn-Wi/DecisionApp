@@ -8,6 +8,7 @@ enum class DetailsScreenRoute{
     drama_screen_route,
     movie_screen_route,
     drink_screen_route,
+    book_screen_route,
 }
 
 fun DetailsScreenRoute.toKorean():String{
@@ -19,5 +20,6 @@ fun DetailsScreenRoute.toKorean():String{
         DetailsScreenRoute.drama_screen_route -> "드라마"
         DetailsScreenRoute.movie_screen_route -> "영화"
         DetailsScreenRoute.drink_screen_route -> "음료"
+        DetailsScreenRoute.book_screen_route -> "도서"
     }
 }

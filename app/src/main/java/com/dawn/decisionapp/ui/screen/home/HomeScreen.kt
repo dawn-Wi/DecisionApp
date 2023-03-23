@@ -20,6 +20,8 @@ import androidx.compose.material.icons.twotone.Audiotrack
 import androidx.compose.material.icons.twotone.Contrast
 import androidx.compose.material.icons.twotone.Fastfood
 import androidx.compose.material.icons.twotone.LiveTv
+import androidx.compose.material.icons.twotone.LocalDrink
+import androidx.compose.material.icons.twotone.Movie
 import androidx.compose.material.icons.twotone.Pin
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
@@ -235,25 +237,123 @@ fun HomeScreen(
                         .height(100.dp)
                         .border(
                             width = 3.dp,
-                            color = Color.Green,
+                            color = Color.Magenta,
                             shape = RoundedCornerShape(20.dp)
                         ),
                     shape = RoundedCornerShape(20.dp),
                     colors = ButtonDefaults.buttonColors(Color.White),
-                    onClick = { viewModel.onEvent(HomeUiEvent.FoodButtonPressed) },
+                    onClick = { viewModel.onEvent(HomeUiEvent.MovieButtonPressed) },
                     icon = {
                         AnimatedVisibility(visible = true) {
                             Image(
                                 modifier = Modifier.fillMaxSize(),
-                                imageVector = Icons.TwoTone.Fastfood,
-                                contentDescription = "FOOD",
+                                imageVector = Icons.TwoTone.Movie,
+                                contentDescription = "MOVIE",
                             )
                         }
                     },
                     text = {
                         Text(
                             fontSize = 25.sp,
-                            text = "음식",
+                            text = "영화",
+                            color = Color.Black,
+                            fontWeight = FontWeight.ExtraBold
+                        )
+                    }
+                )
+            }
+            Spacer(modifier = Modifier.height(10.dp))
+            Row(
+                modifier = Modifier,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                PressIconButton(
+                    modifier = Modifier
+                        .weight(1f)
+                        .height(100.dp)
+                        .border(
+                            width = 3.dp,
+                            color = Color.LightGray,
+                            shape = RoundedCornerShape(20.dp)
+                        ),
+                    shape = RoundedCornerShape(20.dp),
+                    colors = ButtonDefaults.buttonColors(Color.White),
+                    onClick = { viewModel.onEvent(HomeUiEvent.DrinkButtonPressed) },
+                    icon = {
+                        AnimatedVisibility(visible = true) {
+                            Image(
+                                modifier = Modifier.fillMaxSize(),
+                                imageVector = Icons.TwoTone.LocalDrink,
+                                contentDescription = "DRINK",
+                            )
+                        }
+                    },
+                    text = {
+                        Text(
+                            fontSize = 25.sp,
+                            text = "음료",
+                            color = Color.Black,
+                            fontWeight = FontWeight.ExtraBold
+                        )
+                    }
+                )
+                Spacer(modifier = Modifier.width(10.dp))
+                PressIconButton(
+                    modifier = Modifier
+                        .weight(1f)
+                        .height(100.dp)
+                        .border(
+                            width = 3.dp,
+                            color = Color.Blue,
+                            shape = RoundedCornerShape(20.dp)
+                        ),
+                    shape = RoundedCornerShape(20.dp),
+                    colors = ButtonDefaults.buttonColors(Color.White),
+                    onClick = { viewModel.onEvent(HomeUiEvent.DramaButtonPressed) },
+                    icon = {
+                        AnimatedVisibility(visible = true) {
+                            Image(
+                                modifier = Modifier.fillMaxSize(),
+                                imageVector = Icons.TwoTone.LiveTv,
+                                contentDescription = "DRAMA",
+                            )
+                        }
+                    },
+                    text = {
+                        Text(
+                            fontSize = 23.sp,
+                            text = "드라마",
+                            color = Color.Black,
+                            fontWeight = FontWeight.ExtraBold
+                        )
+                    }
+                )
+                Spacer(modifier = Modifier.width(10.dp))
+                PressIconButton(
+                    modifier = Modifier
+                        .weight(1f)
+                        .height(100.dp)
+                        .border(
+                            width = 3.dp,
+                            color = Color.Magenta,
+                            shape = RoundedCornerShape(20.dp)
+                        ),
+                    shape = RoundedCornerShape(20.dp),
+                    colors = ButtonDefaults.buttonColors(Color.White),
+                    onClick = { viewModel.onEvent(HomeUiEvent.MovieButtonPressed) },
+                    icon = {
+                        AnimatedVisibility(visible = true) {
+                            Image(
+                                modifier = Modifier.fillMaxSize(),
+                                imageVector = Icons.TwoTone.Movie,
+                                contentDescription = "MOVIE",
+                            )
+                        }
+                    },
+                    text = {
+                        Text(
+                            fontSize = 25.sp,
+                            text = "영화",
                             color = Color.Black,
                             fontWeight = FontWeight.ExtraBold
                         )

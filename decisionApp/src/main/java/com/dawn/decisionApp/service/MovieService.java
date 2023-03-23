@@ -1,7 +1,7 @@
 package com.dawn.decisionApp.service;
 
-import com.dawn.decisionApp.domain.Food;
-import com.dawn.decisionApp.repository.FoodRepository;
+import com.dawn.decisionApp.domain.Movie;
+import com.dawn.decisionApp.repository.MovieRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -19,38 +19,25 @@ import java.util.Random;
 
 @RequiredArgsConstructor
 @Service
-public class FoodService {
-    private final FoodRepository foodRepository;
+public class MovieService {
+    private final MovieRepository movieRepository;
 
     private final String imageUrl = "https://dapi.kakao.com/v2/search/image";
+    private final String webContentUrl = "https://dapi.kakao.com/v2/search/web";
     private final String key = "824bd5644947b7a1d8f98c8f0037f9ed";
 
-    public Food getRandomFood(){
-        List<Food> allFoodList = foodRepository.findAll();
+    public Movie getRandomMovie(){
+        List<Movie> allMovieList = movieRepository.findAll();
         Random random = new Random();
-        int randomIndex = random.nextInt(allFoodList.size());
-        Food selectFood = allFoodList.get(randomIndex);
-        String foodName = selectFood.getName();
-        if (selectFood.getImage_url() == null){
-            String returnImageUrl = getImageUrl(foodName);
-            selectFood.setImage_url(returnImageUrl);
-            foodRepository.save(selectFood);
+        int randomIndex = random.nextInt(allMovieList.size());
+        Movie selectMovie = allMovieList.get(randomIndex);
+        String movieTitle = selectMovie.getTitle();
+        if (selectMovie.getImage_url() == null){
+            String returnImageUrl = getImageUrl(movieTitle);
+            selectMovie.setImage_url(returnImageUrl);
+            movieRepository.save(selectMovie);
         }
-        return selectFood;
-    }
-
-    public Food getRandomFoodByCategory(String category){
-        List<Food> allFoodListByCategory = foodRepository.findAllByCategory(category);
-        Random random = new Random();
-        int randomIndex = random.nextInt(allFoodListByCategory.size());
-        Food selectFood = allFoodListByCategory.get(randomIndex);
-        String foodName = selectFood.getName();
-        if (selectFood.getImage_url() == null){
-            String returnImageUrl = getImageUrl(foodName);
-            selectFood.setImage_url(returnImageUrl);
-            foodRepository.save(selectFood);
-        }
-        return selectFood;
+        return selectMovie;
     }
 
     private String getImageUrl(String researchItem) {
@@ -60,11 +47,12 @@ public class FoodService {
         HttpEntity<String> httpEntity = new HttpEntity<>(httpHeaders);
         URI targetUrl = UriComponentsBuilder
                 .fromHttpUrl(imageUrl)
-                .queryParam("query", researchItem)
+                .queryParam("query", "영화 : "+researchItem)
                 .build()
                 .encode(StandardCharsets.UTF_8)
                 .toUri();
         ResponseEntity<Map> result = restTemplate.exchange(targetUrl, HttpMethod.GET, httpEntity, Map.class);
         return result.getBody().get("documents").toString().split("image_url=")[1].split(",")[0];
     }
+
 }

@@ -1,4 +1,4 @@
-package com.dawn.decisionapp.ui.screen.food
+package com.dawn.decisionapp.ui.screen.drink
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -27,28 +27,30 @@ import coil.compose.AsyncImage
 import com.baec23.ludwig.component.button.StatefulButton
 import com.baec23.ludwig.component.section.DisplaySection
 import com.dawn.decisionapp.ui.screen.DetailsScreen
+import com.dawn.decisionapp.ui.screen.food.FoodUiEvent
 import com.dawn.decisionapp.util.DetailsScreenRoute
 import com.dawn.decisionapp.util.toKorean
 
-val foodScreenRoute = DetailsScreenRoute.food_screen_route
+val drinkScreenRoute = DetailsScreenRoute.drink_screen_route
 
-fun NavGraphBuilder.foodScreen() {
-    composable(route = foodScreenRoute.toKorean()) {
-        FoodScreen()
+fun NavGraphBuilder.drinkScreen(){
+    composable(route = drinkScreenRoute.toKorean()){
+        DrinkScreen()
     }
 }
 
-fun NavController.navigateToFoodScreen(navOptions: NavOptions? = null) {
-    this.navigate(route = foodScreenRoute.toKorean(), navOptions = navOptions)
+fun NavController.navigateToDrinkScreen(navOptions: NavOptions? = null){
+    this.navigate(route = drinkScreenRoute.toKorean(), navOptions = navOptions)
 }
 
 @Composable
-fun FoodScreen(
-    viewModel: FoodViewModel = hiltViewModel()
-) {
-    val randomFoodName by viewModel.randomFoodName.collectAsState()
-    val randomFoodCategory by viewModel.randomFoodCategory.collectAsState()
-    val randomFoodImageUrl by viewModel.randomFoodImageUrl.collectAsState()
+fun DrinkScreen(
+    viewModel: DrinkViewModel = hiltViewModel()
+){
+    val randomDrinkName by viewModel.randomDrinkName.collectAsState()
+    val randomDrinkCategory by viewModel.randomDrinkCategory.collectAsState()
+    val randomDrinkManufacturingCompany by viewModel.randomDrinkManufacturingCompany.collectAsState()
+    val randomDrinkImageUrl by viewModel.randomDrinkImageUrl.collectAsState()
 
     DetailsScreen {
         Surface(
@@ -56,19 +58,17 @@ fun FoodScreen(
                 .fillMaxSize()
                 .padding(start = 16.dp, end = 16.dp)
         ) {
-            DisplaySection(
-                headerText = "랜덤 음식 생성"
-            ) {
+            DisplaySection(headerText = "랜덤 음료 생성") {
                 Column(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .fillMaxHeight(0.5f),
+                        .fillMaxHeight(0.7f),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Text(
                         modifier = Modifier
                             .align(Alignment.Start),
-                        text = "< $randomFoodCategory >",
+                        text = "< $randomDrinkCategory >",
                         fontSize = 20.sp
                     )
                     Spacer(modifier = Modifier.height(10.dp))
@@ -76,53 +76,56 @@ fun FoodScreen(
                         modifier = Modifier
                             .fillMaxWidth()
                             .fillMaxHeight(0.8f),
-                        model = randomFoodImageUrl,
+                        model = randomDrinkImageUrl,
                         contentDescription = "Image"
                     )
-                    Text(
-                        modifier = Modifier,
-                        text = randomFoodName,
-                        fontSize = 40.sp
-                    )
+                    Row(
+                        modifier = Modifier
+                            .align(Alignment.CenterHorizontally)
+                    ) {
+                        Text(text = "음료이름 : ")
+                        Text(text = randomDrinkName)
+                    }
+                    Spacer(modifier = Modifier.height(10.dp))
+                    Row(
+                        modifier = Modifier
+                            .align(Alignment.CenterHorizontally)
+                    ) {
+                        Text(text = "제조사 : ")
+                        Text(text = randomDrinkManufacturingCompany)
+                    }
+                    Spacer(modifier = Modifier.height(10.dp))
                 }
                 Spacer(modifier = Modifier.height(20.dp))
                 Row {
                     StatefulButton(
                         modifier = Modifier
                             .weight(1f),
-                        onClick = { viewModel.onEvent(FoodUiEvent.KoreanFoodButtonPressed) }
+                        onClick = { viewModel.onEvent(DrinkUiEvent.CarbonatedDrinkButtonPressed) }
                     ) {
-                        Text(text = "한식")
+                        Text(text = "탄산음료")
                     }
                     Spacer(modifier = Modifier.width(10.dp))
                     StatefulButton(
                         modifier = Modifier
                             .weight(1f),
-                        onClick = { viewModel.onEvent(FoodUiEvent.WesternFoodButtonPressed) }
+                        onClick = { viewModel.onEvent(DrinkUiEvent.FruitDrinkButtonPressed) }
                     ) {
-                        Text(text = "양식")
+                        Text(text = "과일음료")
                     }
                     Spacer(modifier = Modifier.width(10.dp))
                     StatefulButton(
                         modifier = Modifier
                             .weight(1f),
-                        onClick = { viewModel.onEvent(FoodUiEvent.ChineseFoodButtonPressed) }
+                        onClick = { viewModel.onEvent(DrinkUiEvent.CoffeeDrinkButtonPressed) }
                     ) {
-                        Text(text = "중식")
-                    }
-                    Spacer(modifier = Modifier.width(10.dp))
-                    StatefulButton(
-                        modifier = Modifier
-                            .weight(1f),
-                        onClick = { viewModel.onEvent(FoodUiEvent.JapaneseFoodButtonPressed) }
-                    ) {
-                        Text(text = "일식")
+                        Text(text = "커피음료")
                     }
                 }
                 StatefulButton(
                     modifier = Modifier
                         .fillMaxWidth(),
-                    onClick = { viewModel.onEvent(FoodUiEvent.RetryButtonPressed) }
+                    onClick = { viewModel.onEvent(DrinkUiEvent.RetryButtonPressed) }
                 ) {
                     Text(text = "다시 뽑기")
                 }

@@ -4,8 +4,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavHostController
 import com.dawn.decisionapp.remote.DecisionApi
-import com.dawn.decisionapp.repository.DecisionRepository
-import com.dawn.decisionapp.service.SnackbarService
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -14,46 +12,59 @@ import javax.inject.Inject
 
 @HiltViewModel
 class FoodViewModel @Inject constructor(
-    private val decisionRepository: DecisionRepository,
+    private val decisionApi: DecisionApi,
     private val navController: NavHostController
 ) : ViewModel(){
 
-    private val _food = MutableStateFlow<String>("a")
-    val food = _food.asStateFlow()
+    private val _randomFoodName = MutableStateFlow<String>("")
+    val randomFoodName = _randomFoodName.asStateFlow()
+
+    private val _randomFoodCategory = MutableStateFlow<String>("")
+    val randomFoodCategory = _randomFoodCategory.asStateFlow()
+
+    private val _randomFoodImageUrl = MutableStateFlow<String>("a")
+    val randomFoodImageUrl = _randomFoodImageUrl.asStateFlow()
+
     fun onEvent(event: FoodUiEvent){
         when(event){
             FoodUiEvent.RetryButtonPressed -> {
-                getFoodList()
+                getRandomFood()
             }
 
             FoodUiEvent.WesternFoodButtonPressed -> {
-                getFoodListByCategory("양식")
+                getRandomFoodByCategory("양식")
             }
             FoodUiEvent.KoreanFoodButtonPressed ->{
-                getFoodListByCategory("한식")
+                getRandomFoodByCategory("한식")
             }
             FoodUiEvent.ChineseFoodButtonPressed ->{
-                getFoodListByCategory("중식")
+                getRandomFoodByCategory("중식")
             }
             FoodUiEvent.JapaneseFoodButtonPressed -> {
-                getFoodListByCategory("일식")
+                getRandomFoodByCategory("일식")
             }
         }
     }
 
-    private fun getFoodList(){
+    private fun getRandomFood(){
         viewModelScope.launch {
-            _food.value = decisionRepository.getFoodList().random()
+            val randomFood = decisionApi.getRandomFood().body()!!
+            _randomFoodName.value = randomFood.name
+            _randomFoodCategory.value = randomFood.category
+            _randomFoodImageUrl.value = randomFood.image_url
         }
     }
-    private fun getFoodListByCategory(category: String){
+    private fun getRandomFoodByCategory(category: String){
         viewModelScope.launch {
-            _food.value = decisionRepository.getFoodListByCategory(category).random()
+            val randomFood = decisionApi.getRandomFoodByCategory(category).body()!!
+            _randomFoodName.value = randomFood.name
+            _randomFoodCategory.value = randomFood.category
+            _randomFoodImageUrl.value = randomFood.image_url
         }
     }
 
     init {
-        getFoodList()
+        getRandomFood()
     }
 }
 sealed class FoodUiEvent{

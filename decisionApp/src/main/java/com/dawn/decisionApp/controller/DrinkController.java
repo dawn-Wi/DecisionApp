@@ -1,7 +1,7 @@
 package com.dawn.decisionApp.controller;
 
-import com.dawn.decisionApp.domain.Food;
-import com.dawn.decisionApp.service.FoodService;
+import com.dawn.decisionApp.domain.Drink;
+import com.dawn.decisionApp.service.DrinkService;
 import jakarta.persistence.EntityExistsException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -11,21 +11,22 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RequiredArgsConstructor
 @RestController
-public class FoodController {
-    private final FoodService foodService;
+public class DrinkController {
+    private final DrinkService drinkService;
 
-    @GetMapping("food")
-    public ResponseEntity<Food> getRandomFood(){
+    @GetMapping("drink")
+    public ResponseEntity<Drink> getRandomDrink(){
         try {
-            return ResponseEntity.ok(foodService.getRandomFood());
+            return ResponseEntity.ok(drinkService.getRandomDrink());
         }catch (EntityExistsException e){
             return ResponseEntity.badRequest().build();
         }
     }
-    @GetMapping("food/category")
-    public ResponseEntity<Food> getRandomFoodByCategory(@RequestParam("category")String category){
-        try{
-            return ResponseEntity.ok(foodService.getRandomFoodByCategory(category));
+
+    @GetMapping("drink/category")
+    public ResponseEntity<Drink> getRandomDrinkByCategory(@RequestParam("category")String category){
+        try {
+            return ResponseEntity.ok(drinkService.getRandomDrinkByCategory(category));
         }catch (EntityExistsException e){
             return ResponseEntity.badRequest().build();
         }

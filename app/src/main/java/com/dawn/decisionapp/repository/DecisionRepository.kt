@@ -13,26 +13,5 @@ class DecisionRepository @Inject constructor(
     private val _foodList = ArrayList<String>()
     private val _song = ArrayList<Song>()
 
-    suspend fun getFoodList(): List<String>{
-        _foodList.clear()
-        val response = decisionApi.getFoodList()
-        if (response.isSuccessful){
-            response.body()!!.forEach {
-                _foodList.add(it.name)
-            }
-        }
-        return _foodList
-    }
 
-    suspend fun getFoodListByCategory(category: String) : List<String>{
-        _foodList.clear()
-        val response = decisionApi.getFoodListByCategory(category)
-        if (response.isSuccessful){
-            response.body()!!.forEach {
-                _foodList.add(it.name)
-                Log.d("getFoodListByCategory", "getFoodListByCategory: $_foodList")
-            }
-        }
-        return _foodList
-    }
 }

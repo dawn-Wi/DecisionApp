@@ -73,11 +73,12 @@ public class SongService {
         HttpEntity<String> httpEntity = new HttpEntity<>(httpHeaders);
         URI targetUrl = UriComponentsBuilder
                 .fromHttpUrl(url)
-                .queryParam("query", researchItem+"앨범 커버 이미지")
+                .queryParam("query", "노래 앨범 커버 : "+researchItem)
                 .build()
                 .encode(StandardCharsets.UTF_8)
                 .toUri();
         ResponseEntity<Map> result = restTemplate.exchange(targetUrl, HttpMethod.GET, httpEntity, Map.class);
+        System.out.println(result.getBody().get("documents").toString())    ;
         return result.getBody().get("documents").toString().split("image_url=")[1].split(",")[0];
     }
 

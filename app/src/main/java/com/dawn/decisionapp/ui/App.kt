@@ -10,9 +10,11 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import com.dawn.decisionapp.ui.screen.color.colorScreen
 import com.dawn.decisionapp.ui.screen.drama.dramaScreen
+import com.dawn.decisionapp.ui.screen.drink.drinkScreen
 import com.dawn.decisionapp.ui.screen.food.foodScreen
 import com.dawn.decisionapp.ui.screen.home.homeScreen
 import com.dawn.decisionapp.ui.screen.home.homeScreenRoute
+import com.dawn.decisionapp.ui.screen.movie.movieScreen
 import com.dawn.decisionapp.ui.screen.number.numberScreen
 import com.dawn.decisionapp.ui.screen.song.songScreen
 
@@ -39,6 +41,8 @@ fun App(
                 foodScreen()
                 songScreen()
                 dramaScreen()
+                movieScreen()
+                drinkScreen()
             }
         }
     }

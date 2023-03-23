@@ -1,7 +1,9 @@
 package com.dawn.decisionapp.remote
 
 import com.dawn.decisionapp.model.Drama
+import com.dawn.decisionapp.model.Drink
 import com.dawn.decisionapp.model.Food
+import com.dawn.decisionapp.model.Movie
 import com.dawn.decisionapp.model.Song
 import retrofit2.Response
 import retrofit2.http.GET
@@ -28,23 +30,29 @@ interface DecisionApi {
     suspend fun getRandomColor(): Response<List<Int>>
 
     @GET("food")
-    suspend fun getFoodList(): Response<List<Food>>
+    suspend fun getRandomFood(): Response<Food>
 
     @GET("food/category")
-    suspend fun getFoodListByCategory(@Query("category") category: String): Response<List<Food>>
+    suspend fun getRandomFoodByCategory(@Query("category") category: String): Response<Food>
 
     @GET("song")
     suspend fun getRandomSong(): Response<Song>
 
     @GET("song/category")
-    suspend fun getRandomSongByCategory(@Query("category")category: String): Response<Song>
+    suspend fun getRandomSongByCategory(@Query("category") category: String): Response<Song>
 
     @GET("song/category/other")
-    suspend fun getRandomSongByCategoryIsOther() : Response<Song>
+    suspend fun getRandomSongByCategoryIsOther(): Response<Song>
 
     @GET("drama")
-    suspend fun getRandomDrama():Response<Drama>
+    suspend fun getRandomDrama(): Response<Drama>
 
-    @GET("drama/category")
-    suspend fun getRandomDramaByCategory(@Query("category")category: String): Response<Drama>
+    @GET("movie")
+    suspend fun getRandomMovie(): Response<Movie>
+
+    @GET("drink")
+    suspend fun getRandomDrink(): Response<Drink>
+
+    @GET("drink/category")
+    suspend fun getRandomDrinkByCategory(@Query("category")category: String): Response<Drink>
 }

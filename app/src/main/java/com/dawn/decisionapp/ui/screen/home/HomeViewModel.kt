@@ -5,7 +5,9 @@ import androidx.navigation.NavHostController
 import com.dawn.decisionapp.ui.AppUiEvent
 import com.dawn.decisionapp.ui.screen.color.navigateToColorScreen
 import com.dawn.decisionapp.ui.screen.drama.navigateToDramaScreen
+import com.dawn.decisionapp.ui.screen.drink.navigateToDrinkScreen
 import com.dawn.decisionapp.ui.screen.food.navigateToFoodScreen
+import com.dawn.decisionapp.ui.screen.movie.navigateToMovieScreen
 import com.dawn.decisionapp.ui.screen.number.navigateToNumberScreen
 import com.dawn.decisionapp.ui.screen.song.navigateToSongScreen
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -40,6 +42,14 @@ class HomeViewModel @Inject constructor(
             HomeUiEvent.DramaButtonPressed -> {
                 navController.navigateToDramaScreen()
             }
+
+            HomeUiEvent.MovieButtonPressed -> {
+                navController.navigateToMovieScreen()
+            }
+
+            HomeUiEvent.DrinkButtonPressed -> {
+                navController.navigateToDrinkScreen()
+            }
         }
     }
 }
@@ -51,4 +61,6 @@ sealed class HomeUiEvent {
     object FoodButtonPressed : HomeUiEvent()
     object SongButtonPressed : HomeUiEvent()
     object DramaButtonPressed : HomeUiEvent()
+    object MovieButtonPressed: HomeUiEvent()
+    object DrinkButtonPressed : HomeUiEvent()
 }

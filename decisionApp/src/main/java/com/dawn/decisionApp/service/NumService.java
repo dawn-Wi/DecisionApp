@@ -18,12 +18,12 @@ public class NumService {
 
     public int getSingleRandomNumber(){
         Random random = new Random();
-        return random.nextInt(100);
+        return random.nextInt(10);
     }
 
     public int getTwoRandomNumber(){
         Random random = new Random();
-        return random.nextInt(1000);
+        return random.nextInt(100);
     }
 
     public int getInputRandomNumber(String startNumber, String endNumber){

@@ -2,6 +2,7 @@ package com.dawn.decisionApp.service;
 
 import com.dawn.decisionApp.domain.Movie;
 import com.dawn.decisionApp.repository.MovieRepository;
+import com.dawn.decisionApp.util;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -26,9 +27,9 @@ public class MovieService {
 
     private final String kakaoImageUrl = "https://dapi.kakao.com/v2/search/image";
     private final String naverUrl = "https://openapi.naver.com/v1/search/movie.json";
-    private final String kakaoKey = "824bd5644947b7a1d8f98c8f0037f9ed";
-    private final String naverClientId = "yYOf8JMgh876A7kRQDMI";
-    private final String naverKey = "52nb8l1Dd6";
+    private final String kakaoKey = util.kakaoKey.value();
+    private final String naverClientId = util.naverClientId.value();
+    private final String naverKey = util.naverKey.value();
 
 
     public Movie getRandomMovie() {

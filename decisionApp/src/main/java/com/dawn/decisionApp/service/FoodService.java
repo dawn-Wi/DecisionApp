@@ -2,6 +2,7 @@ package com.dawn.decisionApp.service;
 
 import com.dawn.decisionApp.domain.Food;
 import com.dawn.decisionApp.repository.FoodRepository;
+import com.dawn.decisionApp.util;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -23,7 +24,7 @@ public class FoodService {
     private final FoodRepository foodRepository;
 
     private final String imageUrl = "https://dapi.kakao.com/v2/search/image";
-    private final String key = "824bd5644947b7a1d8f98c8f0037f9ed";
+    private final String key = util.kakaoKey.value();
 
     public Food getRandomFood(){
         List<Food> allFoodList = foodRepository.findAll();

@@ -2,6 +2,7 @@ package com.dawn.decisionApp.service;
 
 import com.dawn.decisionApp.domain.Book;
 import com.dawn.decisionApp.repository.BookRepository;
+import com.dawn.decisionApp.util;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -22,7 +23,7 @@ import java.util.Random;
 public class BookService {
     private final BookRepository bookRepository;
     private final String kakaoUrl = "https://dapi.kakao.com/v3/search/book";
-    private final String kakaoKey = "824bd5644947b7a1d8f98c8f0037f9ed";
+    private final String kakaoKey = util.kakaoKey.value();
 
     public Book getRandomBook(){
         List<Book> allBookList = bookRepository.findAll();

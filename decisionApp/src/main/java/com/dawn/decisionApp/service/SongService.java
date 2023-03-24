@@ -2,6 +2,7 @@ package com.dawn.decisionApp.service;
 
 import com.dawn.decisionApp.domain.Song;
 import com.dawn.decisionApp.repository.SongRepository;
+import com.dawn.decisionApp.util;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -22,7 +23,7 @@ import java.util.Random;
 public class SongService {
     private final SongRepository songRepository;
     private final String url = "https://dapi.kakao.com/v2/search/image";
-    private final String key = "824bd5644947b7a1d8f98c8f0037f9ed";
+    private final String key = util.kakaoKey.value();
 
     public Song getRandomSong(){
         List<Song> allSongList = songRepository.findAll();

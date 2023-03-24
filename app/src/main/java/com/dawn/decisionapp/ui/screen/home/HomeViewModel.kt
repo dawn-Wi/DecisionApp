@@ -10,6 +10,7 @@ import com.dawn.decisionapp.ui.screen.drink.navigateToDrinkScreen
 import com.dawn.decisionapp.ui.screen.food.navigateToFoodScreen
 import com.dawn.decisionapp.ui.screen.movie.navigateToMovieScreen
 import com.dawn.decisionapp.ui.screen.number.navigateToNumberScreen
+import com.dawn.decisionapp.ui.screen.snack.navigateToSnackScreen
 import com.dawn.decisionapp.ui.screen.song.navigateToSongScreen
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -55,6 +56,10 @@ class HomeViewModel @Inject constructor(
             HomeUiEvent.BookButtonPressed -> {
                 navController.navigateToBookScreen()
             }
+
+            HomeUiEvent.SnackButtonPressed -> {
+                navController.navigateToSnackScreen()
+            }
         }
     }
 }
@@ -69,4 +74,5 @@ sealed class HomeUiEvent {
     object MovieButtonPressed: HomeUiEvent()
     object DrinkButtonPressed : HomeUiEvent()
     object BookButtonPressed: HomeUiEvent()
+    object SnackButtonPressed: HomeUiEvent()
 }

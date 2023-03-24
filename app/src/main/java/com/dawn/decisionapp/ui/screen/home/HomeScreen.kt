@@ -18,6 +18,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.twotone.Audiotrack
 import androidx.compose.material.icons.twotone.Book
+import androidx.compose.material.icons.twotone.BreakfastDining
 import androidx.compose.material.icons.twotone.Contrast
 import androidx.compose.material.icons.twotone.Fastfood
 import androidx.compose.material.icons.twotone.LiveTv
@@ -148,20 +149,20 @@ fun HomeScreen(
                         ),
                     shape = RoundedCornerShape(20.dp),
                     colors = ButtonDefaults.buttonColors(Color.White),
-                    onClick = { viewModel.onEvent(HomeUiEvent.FoodButtonPressed) },
+                    onClick = { viewModel.onEvent(HomeUiEvent.BookButtonPressed) },
                     icon = {
                         AnimatedVisibility(visible = true) {
                             Image(
                                 modifier = Modifier.fillMaxSize(),
-                                imageVector = Icons.TwoTone.Fastfood,
-                                contentDescription = "FOOD",
+                                imageVector = Icons.TwoTone.Book,
+                                contentDescription = "BOOK",
                             )
                         }
                     },
                     text = {
                         Text(
-                            fontSize = 25.sp,
-                            text = "음식",
+                            fontSize = 23.sp,
+                            text = "도서",
                             color = Color.Black,
                             fontWeight = FontWeight.ExtraBold
                         )
@@ -308,25 +309,25 @@ fun HomeScreen(
                         .height(100.dp)
                         .border(
                             width = 3.dp,
-                            color = Color.DarkGray,
+                            color = Color.Gray,
                             shape = RoundedCornerShape(20.dp)
                         ),
                     shape = RoundedCornerShape(20.dp),
                     colors = ButtonDefaults.buttonColors(Color.White),
-                    onClick = { viewModel.onEvent(HomeUiEvent.BookButtonPressed) },
+                    onClick = { viewModel.onEvent(HomeUiEvent.FoodButtonPressed) },
                     icon = {
                         AnimatedVisibility(visible = true) {
                             Image(
                                 modifier = Modifier.fillMaxSize(),
-                                imageVector = Icons.TwoTone.Book,
-                                contentDescription = "BOOK",
+                                imageVector = Icons.TwoTone.Fastfood,
+                                contentDescription = "FOOD",
                             )
                         }
                     },
                     text = {
                         Text(
-                            fontSize = 23.sp,
-                            text = "도서",
+                            fontSize = 25.sp,
+                            text = "음식",
                             color = Color.Black,
                             fontWeight = FontWeight.ExtraBold
                         )
@@ -339,25 +340,25 @@ fun HomeScreen(
                         .height(100.dp)
                         .border(
                             width = 3.dp,
-                            color = Color.Magenta,
+                            color = Color.Black,
                             shape = RoundedCornerShape(20.dp)
                         ),
                     shape = RoundedCornerShape(20.dp),
                     colors = ButtonDefaults.buttonColors(Color.White),
-                    onClick = { viewModel.onEvent(HomeUiEvent.MovieButtonPressed) },
+                    onClick = { viewModel.onEvent(HomeUiEvent.SnackButtonPressed) },
                     icon = {
                         AnimatedVisibility(visible = true) {
                             Image(
                                 modifier = Modifier.fillMaxSize(),
-                                imageVector = Icons.TwoTone.Movie,
-                                contentDescription = "MOVIE",
+                                imageVector = Icons.TwoTone.BreakfastDining,
+                                contentDescription = "SNACK",
                             )
                         }
                     },
                     text = {
                         Text(
                             fontSize = 25.sp,
-                            text = "영화",
+                            text = "과자",
                             color = Color.Black,
                             fontWeight = FontWeight.ExtraBold
                         )

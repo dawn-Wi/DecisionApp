@@ -5,6 +5,7 @@ import com.dawn.decisionapp.model.Drama
 import com.dawn.decisionapp.model.Drink
 import com.dawn.decisionapp.model.Food
 import com.dawn.decisionapp.model.Movie
+import com.dawn.decisionapp.model.Snack
 import com.dawn.decisionapp.model.Song
 import retrofit2.Response
 import retrofit2.http.GET
@@ -59,4 +60,7 @@ interface DecisionApi {
 
     @GET("book")
     suspend fun getRandomBook(): Response<Book>
+
+    @GET("snack")
+    suspend fun getRandomSnack(): Response<Snack>
 }

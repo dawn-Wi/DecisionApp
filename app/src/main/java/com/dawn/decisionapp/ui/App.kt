@@ -17,6 +17,7 @@ import com.dawn.decisionapp.ui.screen.home.homeScreen
 import com.dawn.decisionapp.ui.screen.home.homeScreenRoute
 import com.dawn.decisionapp.ui.screen.movie.movieScreen
 import com.dawn.decisionapp.ui.screen.number.numberScreen
+import com.dawn.decisionapp.ui.screen.snack.snackScreen
 import com.dawn.decisionapp.ui.screen.song.songScreen
 
 @Composable
@@ -45,6 +46,7 @@ fun App(
                 movieScreen()
                 drinkScreen()
                 bookScreen()
+                snackScreen()
             }
         }
     }

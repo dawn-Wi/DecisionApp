@@ -2,20 +2,10 @@ package com.dawn.decisionApp.service;
 
 import com.dawn.decisionApp.domain.Song;
 import com.dawn.decisionApp.repository.SongRepository;
-import com.dawn.decisionApp.util;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
-import org.springframework.web.util.UriComponentsBuilder;
 
-import java.net.URI;
-import java.nio.charset.StandardCharsets;
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
 
 @RequiredArgsConstructor

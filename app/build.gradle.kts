@@ -64,14 +64,14 @@ dependencies {
 
     implementation("androidx.core:core-ktx:1.9.0")
     implementation ("androidx.appcompat:appcompat:1.6.1")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.0")
-    implementation("androidx.activity:activity-compose:1.6.1")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.1")
+    implementation("androidx.activity:activity-compose:1.7.0")
     implementation(platform("androidx.compose:compose-bom:2022.10.00"))
     implementation("androidx.compose.ui:ui")
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
-    implementation("androidx.compose.material:material-icons-extended:1.3.1")
+    implementation("androidx.compose.material:material-icons-extended:1.4.0")
     testImplementation("junit:junit:4.13.2")
     implementation(platform("org.jetbrains.kotlin:kotlin-bom:1.8.0"))
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
@@ -103,8 +103,8 @@ dependencies {
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.6.4")
 
     //Material3
-    implementation ("androidx.compose.material3:material3:1.1.0-alpha08")
-    implementation ("androidx.compose.material3:material3-window-size-class:1.1.0-alpha08")
+    implementation ("androidx.compose.material3:material3:1.1.0-beta01")
+    implementation ("androidx.compose.material3:material3-window-size-class:1.1.0-beta01")
 
     //Image
     implementation("io.coil-kt:coil-compose:2.2.2")

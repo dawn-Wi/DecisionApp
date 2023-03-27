@@ -15,7 +15,7 @@ public class NumController {
     @GetMapping("num")
     public ResponseEntity<Integer> getRandomNumber(){
         try{
-            return ResponseEntity.ok(numService.getRandomNumber());
+            return ResponseEntity.ok(numService.getInputRandomNumber("0","999"));
         }catch (EntityExistsException e){
             return ResponseEntity.badRequest().build();
         }
@@ -24,7 +24,7 @@ public class NumController {
     @GetMapping("num/single")
     public ResponseEntity<Integer> getSingleRandomNumber(){
         try{
-            return ResponseEntity.ok(numService.getSingleRandomNumber());
+            return ResponseEntity.ok(numService.getInputRandomNumber("0","9"));
         }catch (EntityExistsException e){
             return ResponseEntity.badRequest().build();
         }
@@ -33,7 +33,7 @@ public class NumController {
     @GetMapping("num/two")
     public ResponseEntity<Integer> getTwoRandomNumber(){
         try{
-            return ResponseEntity.ok(numService.getTwoRandomNumber());
+            return ResponseEntity.ok(numService.getInputRandomNumber("0","99"));
         }catch (EntityExistsException e){
             return ResponseEntity.badRequest().build();
         }

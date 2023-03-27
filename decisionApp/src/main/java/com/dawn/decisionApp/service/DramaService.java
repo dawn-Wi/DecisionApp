@@ -12,8 +12,7 @@ import java.util.Random;
 @Service
 public class DramaService {
     private final DramaRepository dramaRepository;
-    private final String kakaoUrl = "https://dapi.kakao.com/v2/search/image";
-    private final String kakaoKey = util.kakaoKey.value();
+    private final KakaoApiService kakaoApiService;
 
     public Drama getRandomDrama() {
         List<Drama> allDramaList = dramaRepository.findAll();
@@ -30,17 +29,6 @@ public class DramaService {
     }
 
     private String getKakaoUrl(String researchItem) {
-        RestTemplate restTemplate = new RestTemplate();
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.set("Authorization", "KakaoAK " + kakaoKey);
-        HttpEntity<String> httpEntity = new HttpEntity<>(httpHeaders);
-        URI targetUrl = UriComponentsBuilder
-                .fromHttpUrl(kakaoUrl)
-                .queryParam("query", "드라마 : "+researchItem)
-                .build()
-                .encode(StandardCharsets.UTF_8)
-                .toUri();
-        ResponseEntity<Map> result = restTemplate.exchange(targetUrl, HttpMethod.GET, httpEntity, Map.class);
-        return result.getBody().get("documents").toString().split("image_url=")[1].split(",")[0];
+        return kakaoApiService.getImageUrl("드라마 : " + researchItem);
     }
 }

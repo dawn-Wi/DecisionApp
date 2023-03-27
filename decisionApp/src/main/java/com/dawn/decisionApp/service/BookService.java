@@ -12,8 +12,7 @@ import java.util.Random;
 @Service
 public class BookService {
     private final BookRepository bookRepository;
-    private final String kakaoUrl = "https://dapi.kakao.com/v3/search/book";
-    private final String kakaoKey = util.kakaoKey.value();
+    private final KakaoApiService kakaoApiService;
 
     public Book getRandomBook(){
         List<Book> allBookList = bookRepository.findAll();
@@ -32,32 +31,10 @@ public class BookService {
     }
 
     private String getKakaoImageUrl(String researchItem) {
-        RestTemplate restTemplate = new RestTemplate();
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.set("Authorization", "KakaoAK " + kakaoKey);
-        HttpEntity<String> httpEntity = new HttpEntity<>(httpHeaders);
-        URI targetUrl = UriComponentsBuilder
-                .fromHttpUrl(kakaoUrl)
-                .queryParam("query", researchItem)
-                .build()
-                .encode(StandardCharsets.UTF_8)
-                .toUri();
-        ResponseEntity<Map> result = restTemplate.exchange(targetUrl, HttpMethod.GET, httpEntity, Map.class);
-        return result.getBody().get("documents").toString().split("thumbnail=")[1].split(",")[0];
+        return kakaoApiService.getThumbnailUrl(researchItem);
     }
 
     private String getKakaoAuthorsUrl(String researchItem) {
-        RestTemplate restTemplate = new RestTemplate();
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.set("Authorization", "KakaoAK " + kakaoKey);
-        HttpEntity<String> httpEntity = new HttpEntity<>(httpHeaders);
-        URI targetUrl = UriComponentsBuilder
-                .fromHttpUrl(kakaoUrl)
-                .queryParam("query", researchItem)
-                .build()
-                .encode(StandardCharsets.UTF_8)
-                .toUri();
-        ResponseEntity<Map> result = restTemplate.exchange(targetUrl, HttpMethod.GET, httpEntity, Map.class);
-        return result.getBody().get("documents").toString().split("authors=\\[")[1].split("]")[0];
+        return kakaoApiService.getAuthorsUrl(researchItem);
     }
 }

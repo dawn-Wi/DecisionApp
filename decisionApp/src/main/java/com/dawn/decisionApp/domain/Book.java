@@ -15,10 +15,12 @@ public class Book {
     private String title;
     private String image_url;
     private String authors;
+    private String contents;
 
-    public Book(String title, String image_url, String authors){
+    public Book(String title, String image_url, String authors,String contents){
         this.title = title;
         this.image_url = image_url;
         this.authors = authors;
+        this.contents = contents;
     }
 }

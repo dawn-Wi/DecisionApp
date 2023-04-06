@@ -24,29 +24,31 @@ import java.util.Map;
 @RequiredArgsConstructor
 @Service
 public class KakaoApiService {
-    private final Environment env;
     private final String url = "https://dapi.kakao.com/v2/search/image";
-//    private final String key = env.getProperty("kakao.api.key");
+    private final String bookUrl = "https://dapi.kakao.com/v3/search/book";
 
     @Value("${kakao.api.key}")
     private String key;
     public String getImageUrl(String queryString){
-        return getUrl(queryString, "image_url=", ",");
+        return getUrl(url,queryString, "image_url=", ",");
     }
 
     public String getThumbnailUrl(String queryString){
-        return getUrl(queryString, "thumbnail=", ",");
+        return getUrl(bookUrl,queryString, "thumbnail=", ",");
     }
 
     public String getAuthorsUrl(String queryString){
-        return getUrl(queryString, "authors=\\[", "]");
+        return getUrl(bookUrl,queryString, "authors=\\[", "]");
     }
 
-    private String getUrl(String queryString, String split1Regex, String split2Regex){
+    public String getContents(String queryString){
+        return getUrl(bookUrl, queryString, "contents=",",");
+    }
+
+    private String getUrl(String url,String queryString, String split1Regex, String split2Regex){
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.set("Authorization", "KakaoAK " + key);
-        System.out.println(httpHeaders);
         HttpEntity<String> httpEntity = new HttpEntity<>(httpHeaders);
         URI targetUrl = UriComponentsBuilder
                 .fromHttpUrl(url)
@@ -58,6 +60,7 @@ public class KakaoApiService {
         String responseString = result.getBody().get("documents").toString();
         if(responseString.length() < 3)
             return "";
+        System.out.println(result.getBody().get("documents").toString().split(split1Regex)[1].split(split2Regex)[0]);
         return result.getBody().get("documents").toString().split(split1Regex)[1].split(split2Regex)[0];
     }
 }

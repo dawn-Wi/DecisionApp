@@ -20,11 +20,13 @@ public class BookService {
         int randomIndex = random.nextInt(allBookList.size());
         Book selectBook = allBookList.get(randomIndex);
         if (selectBook.getImage_url() == null) {
-            String dramaName = selectBook.getTitle();
-            String returnImageUrl = getKakaoImageUrl(dramaName);
-            String returnAuthors = getKakaoAuthorsUrl(dramaName);
+            String BookName = selectBook.getTitle();
+            String returnImageUrl = getKakaoImageUrl(BookName);
+            String returnAuthors = getKakaoAuthorsUrl(BookName);
+            String returnContents = getKakaoContents(BookName);
             selectBook.setImage_url(returnImageUrl);
             selectBook.setAuthors(returnAuthors);
+            selectBook.setContents(returnContents);
             bookRepository.save(selectBook);
         }
         return selectBook;
@@ -37,4 +39,6 @@ public class BookService {
     private String getKakaoAuthorsUrl(String researchItem) {
         return kakaoApiService.getAuthorsUrl(researchItem);
     }
+
+    private String getKakaoContents(String researchItem) {return kakaoApiService.getContents(researchItem);}
 }

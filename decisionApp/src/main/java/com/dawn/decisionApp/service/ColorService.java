@@ -15,9 +15,9 @@ public class ColorService {
         Random randomR = new Random();
         Random randomG = new Random();
         Random randomB = new Random();
-        returnList.add(randomR.nextInt(500));
-        returnList.add(randomG.nextInt(500));
-        returnList.add(randomB.nextInt(500));
+        returnList.add(randomR.nextInt(255));
+        returnList.add(randomG.nextInt(255));
+        returnList.add(randomB.nextInt(255));
         return returnList;
     }
 }

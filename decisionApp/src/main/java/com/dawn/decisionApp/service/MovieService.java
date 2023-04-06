@@ -39,7 +39,7 @@ public class MovieService {
         String movieTitle = selectMovie.getTitle();
         if (selectMovie.getImage_url() == null) {
             String returnImageUrl = getKakaoImageUrl(movieTitle);
-            String returnActor = getNaverActorUrl(movieTitle);
+            String returnActor = getNaverActorUrl(movieTitle, "actor=",",");
             selectMovie.setImage_url(returnImageUrl);
             selectMovie.setActor(returnActor);
             movieRepository.save(selectMovie);
@@ -51,7 +51,7 @@ public class MovieService {
         return kakaoApiService.getImageUrl("영화 : "+researchItem);
     }
 
-    private String getNaverActorUrl(String researchItem){
+    private String getNaverActorUrl(String researchItem, String split1Regex, String split2Regex){
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.add("X-Naver-Client-Id", naverClientId);
@@ -65,6 +65,6 @@ public class MovieService {
                 .toUri();
         ResponseEntity<Map> result = restTemplate.exchange(targetUrl, HttpMethod.GET, httpEntity, Map.class);
         System.out.println(result.getBody().toString());
-        return result.getBody().toString().split("actor=")[1].split(",")[0];
+        return result.getBody().toString().split(split1Regex)[1].split(split2Regex)[0];
     }
 }
